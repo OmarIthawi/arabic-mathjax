@@ -1,5 +1,5 @@
 main:
-  image: node:0.12.9
+  image: node:9.4.0
 
   working_dir: /code/
   environment:
