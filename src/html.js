@@ -68,6 +68,26 @@ MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready', function () {
       'mtext'
     ].forEach(makeElementFlippable);
 
+    MathJax.Hub.Register.StartupHook('HTML-CSS multiline Ready', function () {
+      var originalAddLine = MML.mbase.prototype.HTMLaddLine;
+
+      MML.mbase.Augment({
+        HTMLaddLine: function() {
+          var stack = arguments[0];
+
+          // TODO: Would it be possible to use the usual env settings
+          //       to fix this issue, instead of doing a querySelector?
+          if (stack && stack.querySelector('.mfliph')) {
+            stack.className = 'mfliph';
+          }
+
+          originalAddLine.apply(this, arguments);
+        }
+      });
+
+      MathJax.Hub.Startup.signal.Post('Arabic multiline Ready');
+    });
+
     MathJax.Hub.Register.StartupHook('HTML-CSS mtable Ready', function () {
       makeElementFlippable('mtable');
 
