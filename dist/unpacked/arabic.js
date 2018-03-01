@@ -1,10 +1,7 @@
 /*!
  * The MIT License
  *
- * Copyright (c) 2015-2016 The Queen Rania Foundation for Education and Development
- *
- * http://www.qrf.org
- * http://www.edraak.org
+ * Copyright (c) 2015-2016 Edraak.org, Omar Al-Ithawi and contributors.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal

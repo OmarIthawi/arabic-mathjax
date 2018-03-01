@@ -1,5 +1,5 @@
 {
-  "name": "mathjax-dev",
+  "name": "arabic-mathjax",
   "version": "1.0.0",
   "description": "A docker container for developing my MathJax plugins.",
   "main": "gulpfile.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Edraak/mathjax-dev.git"
+    "url": "https://github.com/OmarIthawi/arabic-mathjax.git"
   },
   "devDependencies": {
     "browser-sync": "^2.6.5",
@@ -24,7 +24,7 @@
   "generator": "Quench <http://quenchjs.com/>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Edraak/mathjax-dev/issues"
+    "url": "https://github.com/OmarIthawi/arabic-mathjax/issues"
   },
-  "homepage": "https://github.com/Edraak/mathjax-dev"
+  "homepage": "http://www.omardo.com/arabic-mathjax/index.html"
 }

@@ -17,7 +17,7 @@ and [configure](http://mathjax.readthedocs.org/en/latest/configuration.html) Mat
 
 Then you'll need to include the `arabic.js` as an extension, here's an example configuration:
 
-    MathJax.Ajax.config.path["arabic"] = "https://cdn.rawgit.com/Edraak/arabic-mathjax/v1.0/dist";
+    MathJax.Ajax.config.path["arabic"] = "https://cdn.rawgit.com/OmarIthawi/arabic-mathjax/v1.0/dist";
 
     MathJax.Hub.Config({
         extensions: [
@@ -141,14 +141,14 @@ Additional extensions for Physics and some Chemistry units and symbols exists,
 however, it is not tested/developed well. If you're curious, you can take a look
 at the following extensions:
 
- - [`phys1.js`](https://github.com/Edraak/arabic-mathjax/blob/master/testcases/test-extensions/phys1.js):
+ - [`phys1.js`](https://github.com/OmarIthawi/arabic-mathjax/blob/master/testcases/test-extensions/phys1.js):
    Contains general physics units like Farad and speed of light. Interesting stuff, but haven't had proper
    testing and usage (yet).
 
- - [`phys2.js`](https://github.com/Edraak/arabic-mathjax/blob/master/testcases/test-extensions/phys2.js):
+ - [`phys2.js`](https://github.com/OmarIthawi/arabic-mathjax/blob/master/testcases/test-extensions/phys2.js):
    Additional advanced physics units that I don't understand as much!
 
- - [`hacks.js`](https://github.com/Edraak/arabic-mathjax/blob/master/testcases/test-extensions/hacks.js):
+ - [`hacks.js`](https://github.com/OmarIthawi/arabic-mathjax/blob/master/testcases/test-extensions/hacks.js):
    A hack to convert the English decimal mark from `.` to `٫`
    ([Arabic decimal mark, Unicode 0x066b](http://www.unicodemap.org/details/0x066B/index.html)).
    Although the Arabic decimal mark exists, I'm not sure if it is
@@ -159,14 +159,12 @@ at the following extensions:
 Well, just issue a pull request to this repo and ping me (my GitHub username is @OmarIthawi).
 Even better, grab my docker-based development environment from here so you can have a better development experience:
 
-    $ git clone https://github.com/Edraak/arabic-mathjax.git
+    $ git clone https://github.com/OmarIthawi/arabic-mathjax.git
     $ cd arabic-mathjax
-    $ git clone git@github.com:Edraak/MathJax-third-party-extensions.git extensions
     $ git clone git@github.com:mathjax/MathJax mathjax
     $ cd mathjax
-    $ git checkout 2.6.1
+    $ git checkout 2.7.1
     $ cd ..
-    $ git clone git@github.com:Edraak/arabic-extension-static.git static
     $ make init
     $ docker-compose up
 
@@ -174,7 +172,7 @@ Even better, grab my docker-based development environment from here so you can h
 # License
 The MIT License
 
-Copyright (c) 2015-2016 The Queen Rania Foundation for Education and Development
+Copyright (c) 2015-2016 Edraak.org, Omar Al-Ithawi and contributors.
 
 # Author
 
@@ -185,4 +183,10 @@ Why this plugin exists? Well, I could tell you an interesting story like I wante
 but frankly we needed it to display Math equations for our Arabic learners at [Edraak.org](https://www.edraak.org),
 and therefore I made it.
 
-Well, it does change the world somehow, at the least in the eyes of our learners ^_^
+Well, it does change the world somehow, at the least in the eyes of our learners ^\_^
+
+# Fork Info
+The original repository is:
+ - https://github.com/Edraak/arabic-mathjax
+
+This fork aims to be more updated and supported.
