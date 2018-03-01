@@ -17,7 +17,7 @@ and [configure](http://mathjax.readthedocs.org/en/latest/configuration.html) Mat
 
 Then you'll need to include the `arabic.js` as an extension, here's an example configuration:
 
-    MathJax.Ajax.config.path["arabic"] = "https://cdn.rawgit.com/OmarIthawi/arabic-mathjax/v1.0/dist";
+    MathJax.Ajax.config.path["arabic"] = "https://cdn.rawgit.com/OmarIthawi/arabic-mathjax/v1.2/dist";
 
     MathJax.Hub.Config({
         extensions: [
