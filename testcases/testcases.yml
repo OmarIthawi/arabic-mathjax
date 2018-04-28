@@ -356,3 +356,9 @@ equations:
     hide_arabic: True
     equation: >
       \alwaysar{x=1} \, x=1
+
+  - id: "86"
+    name: "Charge Character"
+    note: "Renders the special-sheen character in Arabic"
+    equation: >
+      \charge = 1
