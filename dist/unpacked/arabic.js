@@ -124,13 +124,18 @@ MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready', function () {
 });
 
 MathJax.Extension.Arabic = {
-  version: '1.0.0',
+  version: '1.2.1',
   config: MathJax.Hub.CombineConfig("Arabic", {
     dict: {
       // A macros to force English zero in both languages
       'Zero': ['zero', 'Text', ['0', '\u0635\u0641\u0631']],  // Better localized Zero
       'Radius': ['radius', 'Text', ['r', '\u0646\u0642']],  // Circle radius
-      'Area': ['Area', 'Text', ['A', '\u0645']]  // Area of circles and other stuff
+      'Area': ['Area', 'Text', ['A', '\u0645']],  // Area of circles and other stuff
+
+      // Used for special charge character in the modified Amiri font:
+      //   - https://github.com/OmarIthawi/amiri/releases
+      //     This only will work when activating that font.
+      'Charge': ['charge', 'TeX', ['C', '\\fliph{\\text{\u069b}}']],
     },
     identifiersMap: {
       // Variable names

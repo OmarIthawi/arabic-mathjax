@@ -94,6 +94,12 @@ The extension provides the following additional TeX commands to be typeset an Ar
      * **Area of circle:** (and other stuff) `\Area` Translates to `A` and `م`
      * **Arabic Zero:** `\zero` Renders the `صفر`in Arabic while printing normal `0` in English.
        The former is usually preferred by the Arabic Math textbooks.
+     * **Charge Sheen Character:** `\charge` Renders the 
+      [`ڛ` (Unicode U+069B)](https://www.compart.com/en/unicode/U+069B) 
+       character in Arabic while printing `C` in English.
+       
+       This sheen character is then replaced by a more appropriate Ruqa (رقعة) character, when using
+       the [modified Amiri font](https://github.com/OmarIthawi/amiri/releases).
 
  - Bilingual commands, which prints the first argument on English pages and the second argument on Arabic pages.
    Useful to to build bilingual equations for strings that the extension provides no explicit support to.
