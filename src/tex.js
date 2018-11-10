@@ -57,6 +57,34 @@ MathJax.Extension.Arabic = {
       '8': '٨',
       '9': '٩'
     },
+    // numbers with arabic decimal separator ','
+    arabicDecimalSeparator: {
+      '0.': '\u0660\u066b',
+      '1.': '\u0661\u066b',
+      '2.': '\u0662\u066b',
+      '3.': '\u0663\u066b',
+      '4.': '\u0664\u066b',
+      '5.': '\u0665\u066b',
+      '6.': '\u0666\u066b',
+      '7.': '\u0667\u066b',
+      '8.': '\u0668\u066b',
+      '9.': '\u0669\u066b',
+    },
+    
+    // support for arabic (modern) numerals
+    arabicNumbersMap: {
+      '0': '0',
+      '1': '1',
+      '2': '2',
+      '3': '3',
+      '4': '4',
+      '5': '5',
+      '6': '6',
+      '7': '7',
+      '8': '8',
+      '9': '9',
+    },
+    
     operatorsMap: {
       // English to Arabic punctuations
       ',': '،',
@@ -203,8 +231,26 @@ MathJax.Hub.Register.StartupHook('TeX Jax Ready', function () {
       return token;
     },
     arabicNumber: (function () {
-      var englishNumbersRegExp = /[0-9]/g;
-      var numbersMap = MathJax.Hub.config.Arabic.numbersMap;
+      // check for MathJax options
+      useHindiNumeral = MathJax.Hub.config.useHindiNumeral
+      useArabicDecimalSeparator = MathJax.Hub.config.useArabicDecimalSeparator
+      
+      // Default options
+      if (useHindiNumeral == null) useHindiNumeral = true
+      if (useArabicDecimalSeparator == null) useArabicDecimalSeparator = true
+
+      arConfig = MathJax.Hub.config.Arabic
+      if(useArabicDecimalSeparator){
+        var englishNumbersRegExp = /[0-9]\.?/g;
+        var numbersMap = {};
+        for (var nma in arConfig.numbersMap) { numbersMap[nma] = arConfig.numbersMap[nma]; }
+        for (var nma in arConfig.arabicDecimalSeparator) { numbersMap[nma] = arConfig.arabicDecimalSeparator[nma]; }
+      } else{
+        var englishNumbersRegExp = /[0-9]/g;
+        if(useHindiNumeral) var numbersMap = arConfig.numbersMap;
+        else var numbersMap = arConfig.arabicNumbersMap
+      }
+
 
       var replaceNumber = function (m) {
         return numbersMap[m];
