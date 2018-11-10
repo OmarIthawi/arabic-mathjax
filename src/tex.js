@@ -242,7 +242,9 @@ MathJax.Hub.Register.StartupHook('TeX Jax Ready', function () {
       arConfig = MathJax.Hub.config.Arabic
       if(useArabicDecimalSeparator){
         var englishNumbersRegExp = /[0-9]\.?/g;
-        var numbersMap = {...arConfig.numbersMap, ...arConfig.arabicDecimalSeparator}
+        var numbersMap = {};
+        for (var nma in arConfig.numbersMap) { numbersMap[nma] = arConfig.numbersMap[nma]; }
+        for (var nma in arConfig.arabicDecimalSeparator) { numbersMap[nma] = arConfig.arabicDecimalSeparator[nma]; }
       } else{
         var englishNumbersRegExp = /[0-9]/g;
         if(useHindiNumeral) var numbersMap = arConfig.numbersMap;
