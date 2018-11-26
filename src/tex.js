@@ -57,6 +57,10 @@ MathJax.Extension.Arabic = {
       '8': '٨',
       '9': '٩'
     },
+    arabicUnicodeStart: 0x600,
+    arabicUnicodeEnd: 0x6FF,
+    arabicLanguageRegExp: /([\u0600-\u06FF]+)/g,
+    arabicDecimalSplitter: '٫',  // Used by `\transn`
     operatorsMap: {
       // English to Arabic punctuations
       ',': '،',
@@ -64,9 +68,10 @@ MathJax.Extension.Arabic = {
       // Limits
       'lim': 'نهــا'
     },
-    isArabicPage: (document.documentElement.lang === 'ar')
+    isArabicPage: function () { 
+      return document.documentElement.lang === 'ar';
+    }
   }),
-  arabicLanguageRegExp: /([\u0600-\u06FF]+)/g,
   TeX: function (english, arabic) {
     // Creates a translated TeX macro.
 
@@ -92,11 +97,20 @@ MathJax.Extension.Arabic = {
     // Creates a translated TeX macro that converts Arabic symbols into text nodes,
     // and treats everything else as normal TeX.
     var arabic = arabicSymbols.replace(
-      MathJax.Extension.Arabic.arabicLanguageRegExp,
+      MathJax.Hub.config.Arabic.arabicLanguageRegExp,
       '\\fliph{\\text{$1}}'
     );
 
     return MathJax.Extension.Arabic.TeX(english, arabic);
+  },
+  MapNumbers: function (text) {
+    var numbersMap = MathJax.Hub.config.Arabic.numbersMap;
+
+    var replaceNumber = function (m) {
+      return numbersMap[m];
+    };
+
+    return text.replace(/[0-9]/g, replaceNumber);
   }
 };
 
@@ -133,6 +147,7 @@ MathJax.Hub.Register.StartupHook('TeX Jax Ready', function () {
       'ar': 'HandleArabic',
       'alwaysar': 'MarkAsArabic',
       'fliph': 'HandleFlipHorizontal',
+      'transn': 'TranslateNumbers',
       'transx': 'TranslateTeX',
       'transt': 'TranslateText',
       'transs': 'TranslateSymbols'
@@ -202,26 +217,17 @@ MathJax.Hub.Register.StartupHook('TeX Jax Ready', function () {
         // Invert the value, because flipping twice means, it is not flipped
       return token;
     },
-    arabicNumber: (function () {
-      var englishNumbersRegExp = /[0-9]/g;
-      var numbersMap = MathJax.Hub.config.Arabic.numbersMap;
+    arabicNumber: function (token) {
+      var text = token.data[0].data[0];
+      var mapped = Arabic.MapNumbers(text);
 
-      var replaceNumber = function (m) {
-        return numbersMap[m];
-      };
-
-      return function (token) {
-        var text = token.data[0].data[0];
-        var mapped = text.replace(englishNumbersRegExp, replaceNumber);
-
-        if (mapped !== text) {
-          token.data[0].data[0] = mapped;
-          token.arabicFontLang = 'ar';
-        }
-
-        return this.flipHorizontal(token);
+      if (mapped !== text) {
+        token.data[0].data[0] = mapped;
+        token.arabicFontLang = 'ar';
       }
-    }()),
+
+      return this.flipHorizontal(token);
+    },
     arabicIdentifier: (function () {
       var identifiersMap = MathJax.Hub.config.Arabic.identifiersMap;
       var identifiersKeysRegExp = getKeysRegExp(identifiersMap);
@@ -320,6 +326,19 @@ MathJax.Hub.Register.StartupHook('TeX Jax Ready', function () {
       var english = this.GetArgument(name);
       var arabicText = this.GetArgument(name);
       var helper = Arabic.Text(english, arabicText);
+      return helper.call(this, name);
+    },
+    TranslateNumbers: function (name) {
+      var english = this.GetArgument(name);
+      var arabicDecimalSplitter = MathJax.Hub.config.Arabic.arabicDecimalSplitter;
+
+      var arabicNumbers = Arabic.MapNumbers(english, true)
+                                .replace(/,/g, '')
+                                .replace(/\./g, arabicDecimalSplitter);
+
+      var helper = MathJax.Extension.Arabic.TeX(
+        english, '\\fliph{\\text{' + arabicNumbers + '}}'
+      );
       return helper.call(this, name);
     },
     TranslateSymbols: function (name) {

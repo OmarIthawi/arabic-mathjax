@@ -29,38 +29,40 @@
         <td id="dynamic-ar"></td>
     </tr>
     {{#equations}}
-    <tr id="eq_{{id}}">
-        <td>
-            <a href="#eq_{{id}}">
-                <strong>#{{id}} {{name}}</strong>
-            </a>
-        </td>
-        <td id="eq_{{id}}_code">
-            <a class="inline-link" href="#eq_{{id}}_code">#</a>
-            <code>{{{equation}}}</code>
-        </td>
-        <td id="eq_{{id}}_en">
-            <a class="inline-link" href="#eq_{{id}}_en">#</a>
-            <script type="math/tex; mode=display">
-                {{{equation}}}
-            </script>
-        </td>
-        <td id="eq_{{id}}_ar">
-            <a class="inline-link" href="#eq_{{id}}_ar">#</a>
+        {{^experimental}}
+            <tr id="eq_{{id}}">
+                <td>
+                    <a href="#eq_{{id}}">
+                        <strong>#{{id}} {{name}}</strong>
+                    </a>
+                </td>
+                <td id="eq_{{id}}_code">
+                    <a class="inline-link" href="#eq_{{id}}_code">#</a>
+                    <code>{{{equation}}}</code>
+                </td>
+                <td id="eq_{{id}}_en">
+                    <a class="inline-link" href="#eq_{{id}}_en">#</a>
+                    <script type="math/tex; mode=display">
+                        {{{equation}}}
+                    </script>
+                </td>
+                <td id="eq_{{id}}_ar">
+                    <a class="inline-link" href="#eq_{{id}}_ar">#</a>
 
-            {{#hide_arabic}}
-              <i>English-only test case.</i>
-            {{/hide_arabic}}
+                    {{#hide_arabic}}
+                    <i>English-only test case.</i>
+                    {{/hide_arabic}}
 
-            {{^hide_arabic}}
-              <script type="math/tex; mode=display">
-                  \ar{
-                      {{{equation}}}
-                  }
-              </script>
-            {{/hide_arabic}}
-        </td>
-    </tr>
+                    {{^hide_arabic}}
+                    <script type="math/tex; mode=display">
+                        \ar{
+                            {{{equation}}}
+                        }
+                    </script>
+                    {{/hide_arabic}}
+                </td>
+            </tr>
+        {{/experimental}}
     {{/equations}}
 </table>
 <br />

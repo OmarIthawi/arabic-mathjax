@@ -1,0 +1,71 @@
+/* CommonHTML Output Jax CSS */
+.MathJax_CHTML .mfliph {
+    display: inline-block !important;
+    -moz-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    transform: scaleX(-1);
+    -ms-filter: fliph;
+    filter: fliph;
+}
+
+.MathJax_CHTML .mar {
+    font-style: normal !important;
+}
+
+.MathJax_CHTML .mar > span {
+    font-style: normal !important;
+}
+
+.mfliph > .mjx-char {
+    direction: rtl;
+    text-align: right;
+}
+
+.mfliph .MJXc-TeX-unknown-I, .mfliph.MJXc-TeX-unknown-I {
+    font-style: normal !important;
+}
+
+.mfliph.mar > .mjx-char.MJXc-TeX-unknown-I {
+  border: solid transparent;
+  border-width: 0.45em 0;
+}
+
+.mjx-mn > .mfliph.mar > .mjx-char.MJXc-TeX-unknown-I {
+  border-width: 0;
+}
+
+.mjx-stack > .mjx-sup > span > .mfliph.mar > .MJXc-TeX-unknown-I {
+    border-bottom-width: 0.85em;
+}
+
+.MJXc-stacked > .mjx-numerator > span > .mfliph.mar > .MJXc-TeX-unknown-R {
+    padding-top: 0.6em;
+}
+
+.MJXc-stacked > .mjx-denominator > span > .mfliph.mar > .MJXc-TeX-unknown-R {
+    padding-bottom: 0.6em;
+}
+
+.MJXc-stacked > .mjx-denominator > span > .mfliph > .mjx-char.MJXc-TeX-unknown-R {
+    padding-bottom: 0.6em;
+}
+
+
+/* HTML-CSS Output Jax CSS */
+.MathJax .mfliph {
+    display: inline-block !important;
+    -moz-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    transform: scaleX(-1);
+    -ms-filter: fliph;
+    filter: fliph;
+}
+
+.MathJax .mar {
+    font-style: normal !important;
+}
+.MathJax .mar > span {
+    font-style: normal !important;
+}
