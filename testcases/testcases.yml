@@ -482,3 +482,15 @@ equations:
       \times\textcolor{coral}{7}&=\textcolor{blue}{\transn{7,658}y}\\
       \textcolor{coral}{3}\times\textcolor{coral}{4}\times
       \textcolor{coral}{5}&=\textcolor{blue}{60}\end{align}
+
+  - id: "103"
+    name: "Mixed Fractions"
+    note:
+    equation: >
+      \tmfrac{20}{1}{2}
+
+  - id: "104"
+    name: "Mixed Fractions with Symbols"
+    note:
+    equation: >
+      \tmfrac{x}{y}{z}

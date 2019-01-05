@@ -148,6 +148,7 @@ MathJax.Hub.Register.StartupHook('TeX Jax Ready', function () {
       'alwaysar': 'MarkAsArabic',
       'fliph': 'HandleFlipHorizontal',
       'transn': 'TranslateNumbers',
+      'tmfrac': 'TranslateMixedFraction',
       'transx': 'TranslateTeX',
       'transt': 'TranslateText',
       'transs': 'TranslateSymbols'
@@ -346,6 +347,18 @@ MathJax.Hub.Register.StartupHook('TeX Jax Ready', function () {
       var arabicText = this.GetArgument(name);
       var helper = Arabic.Symbols(english, arabicText);
       return helper.call(this, name);
+    },
+    TranslateMixedFraction: function () {
+      var integer = this.GetArgument(name);
+      var numerator = this.GetArgument(name);
+      var denominator = this.GetArgument(name);
+
+      var tex = MathJax.Extension.Arabic.TeX(
+        integer + '\\frac{' + numerator + '}{' + denominator + '}',
+        '\\alwaysar{\\fliph{\\frac{' + numerator + '}{' + denominator + '}' + integer + '}}'
+      );
+
+      return tex.call(this, name);
     },
     MarkAsArabic: function (name) {
       var originalLang = this.stack.env.lang;

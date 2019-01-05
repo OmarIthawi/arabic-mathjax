@@ -108,6 +108,8 @@ The extension provides the following additional TeX commands to be typeset an Ar
      * **Translate a TeX input** `\transx`
      * **Translate a text input** `\transt` e.g. `\transt{\text{if}}{إذا}` for the Math piecewise equations.
      * **Translate a TeX input with Arabic symbols** `\transs`: e.g. `\transs{A_b}{أ_ب}`
+     * **Translate Arabic numbers** `\transn`: e.g. `\transn{2000,000.195}`
+     * **Translate Mixed Fractions** `\tmfrac`: e.g. `\tmfrac{10}{1}{2}` to denote `10.5` as a mixed fraction
 
  - Basic variable and function names translation:
      * `A` --> `أ`
