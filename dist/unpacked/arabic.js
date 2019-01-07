@@ -183,7 +183,7 @@
 }());
 
 MathJax.Extension.Arabic = {
-  version: '1.2.1',
+  version: '2.0.0',
   config: MathJax.Hub.CombineConfig("Arabic", {
     dict: {
       // A macros to force English zero in both languages

@@ -1,6 +1,6 @@
 {
   "name": "arabic-mathjax",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A docker container for developing my MathJax plugins.",
   "main": "gulpfile.js",
   "scripts": {
@@ -13,6 +13,7 @@
   "devDependencies": {
     "browser-sync": "^2.26.3",
     "gulp": "^3.9.1",
+    "gulp-uglifycss": "^1.1.0",
     "gulp-concat": "^2.6.0",
     "gulp-order": "^1.2.0",
     "gulp-plumber": "1.0.0",
@@ -27,7 +28,5 @@
     "url": "https://github.com/OmarIthawi/arabic-mathjax/issues"
   },
   "homepage": "http://www.omardo.com/arabic-mathjax/index.html",
-  "dependencies": {
-    "gulp-uglifycss": "^1.1.0"
-  }
+  "dependencies": {}
 }
