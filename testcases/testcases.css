@@ -1,3 +1,4 @@
+/* Test Cases Styles */
 #wrapper {
     margin: 0 auto;
     padding-top: 40px;
@@ -33,4 +34,8 @@ td:hover .inline-link {
 
 td:hover .inline-link:hover {
     opacity: 1;
+}
+
+.hidden {
+    display: none;
 }

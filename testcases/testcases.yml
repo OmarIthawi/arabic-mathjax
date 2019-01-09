@@ -41,6 +41,7 @@ equations:
 
   - id: "9"
     name: "Lightspeed"
+    experimental: yes
     equation: > 
       \lspeed = 299792458{m \over \scnd}
 
@@ -56,11 +57,13 @@ equations:
 
   - id: "12"
     name: "Meter"
+    experimental: yes
     equation: > 
       x = 10m + 20\cm
 
   - id: "13"
     name: "Misc symbols A"
+    experimental: yes
     equation: > 
       a = \epsilonzero + \varepsilon
 
@@ -76,26 +79,31 @@ equations:
 
   - id: "16"
     name: "Plancks and Boltzmanns"
+    experimental: yes
     equation: > 
       \Plancks \neq \Boltzmanns
 
   - id: "17"
     name: "Air Mass"
+    experimental: yes
     equation: > 
       \AM = x
 
   - id: "18"
     name: "Radiation"
+    experimental: yes
     equation: > 
       \rad = x
 
   - id: "19"
     name: "Amplifiers"
+    experimental: yes
     equation: > 
       1\Mega, 2\nano, 3\Giga, 4\Tera, 3\kilo, 20\micro
 
   - id: "20"
     name: "Electricity"
+    experimental: yes
     equation: > 
       \Watt = \Amp \times \volt
 
@@ -106,91 +114,109 @@ equations:
 
   - id: "22"
     name: "Temrature"
+    experimental: yes
     equation: > 
       \Tmpr = 10\Klvn
 
   - id: "23"
     name: "Current"
+    experimental: yes
     equation: > 
       \current = 10\Amp
 
   - id: "24"
     name: "ER #1"
+    experimental: yes
     equation: > 
       \er
 
   - id: "24.b"
     name: "ER #2"
+    experimental: yes
     equation: > 
       \er = x
 
   - id: "25"
     name: "The J stuff"
+    experimental: yes
     equation: > 
       \J_\zero, \J_\ph, \J_\diffe, \J_\sc
 
   - id: "26"
     name: "Voltage of Open Circuit"
+    experimental: yes
     equation: > 
       \V_\oc
 
   - id: "27"
     name: "Concentation Stuff"
+    experimental: yes
     equation: > 
       \NA, \ND, \nii
 
   - id: "28"
     name: "Deplation Area"
+    experimental: yes
     equation: > 
       \Wd = x
 
   - id: "29"
     name: "Farad"
+    experimental: yes
     equation: > 
       \F = {{\scnd^4 \cdot \Amp^2} \over {\kilo\grm \cdot m^2}}
 
   - id: "30"
     name: "Diffusion Length"
+    experimental: yes
     equation: > 
       \Ld = 10m
 
   - id: "31"
     name: "Electrons Diffusion"
+    experimental: yes
     equation: > 
       \D_\ek
 
   - id: "32"
     name: "Electrons Motion Constant"
+    experimental: yes
     equation: > 
       \mue
 
   - id: "33"
     name: "Hole"
+    experimental: yes
     equation: > 
       20\hole
 
   - id: "34"
     name: "Electrons"
+    experimental: yes
     equation: > 
       2 \elctrn
 
   - id: "35"
     name: "Time"
+    experimental: yes
     equation: > 
       1\year = 365.25\day, 1\day = 24\hour
 
   - id: "36"
     name: "Max Watt"
+    experimental: yes
     equation: > 
       \Watt_\max
 
   - id: "37"
     name: "Fill Factor"
+    experimental: yes
     equation: > 
       \FF
 
   - id: "38"
     name: "Photovoltaic Energy"
+    experimental: yes
     equation: > 
       \P_\inn
 
@@ -362,3 +388,109 @@ equations:
     note: "Renders the special-sheen character in Arabic"
     equation: >
       \charge = 1
+
+  - id: "87"
+    name: Colored equations
+    note:
+    equation: >
+      \textcolor{blue}{3}a^\textcolor{coral}{2}-\textcolor{blue}{5}b^\textcolor{coral}{\frac{1}{2}\cdot3}.
+
+  - id: "88"
+    name: Derivative
+    note:
+    equation: >
+      \displaystyle\int \dfrac{e^x}{1+e^{2x}}\,dx.
+
+  - id: "89"
+    name: Array
+    note:
+    equation: >
+      \begin{array}{rrrrr}3x&{}+2y&{}+z&\\-4x&+y&&-7\\\hline -x&+3y&+z&-7\end{array}
+
+  - id: "90"
+    name: Aligned part no. 1
+    note:
+    equation: >
+      A = \begin{bmatrix}a_{11} & a_{12} & \dots \\\vdots & \ddots & \\a_{K1} && a_{KK}\end{bmatrix}
+
+  - id: "91"
+    name: Alignment part no. 2
+    note:
+    equation: >
+      \left(\smash{\underbrace{\left[\begin{array}{ccc}a&b&c\\d&e&f\\g&h&i\end{array}\right]}_{A}}\left[\begin{array}{c}x_1\\x_2\\x_3\end{array}\right]\right)\\\\\\\\
+
+  - id: "92"
+    name: Strikethroughs using the \enclose extension (and limits)
+    note:
+    equation: >
+      \require{enclose}\small\begin{align}\lim\limits_{x \to 5} \frac{x-5}{x^2-25}&=\lim\limits_{x \to 5} \frac{x-5}{(x-5)(x+5)}\\\\&=\lim\limits_{x \to 5} \frac{\enclose{horizontalstrike}{x-5}}{\enclose{horizontalstrike}{(x-5)}(x+5)}\\\\&=\lim\limits_{x \to 5} \frac{1}{x+5}\\\\&=\frac{1}{5+5}=\frac{1}{10}\end{align}
+  
+  - id: "93"
+    name: Small
+    note:
+    equation: >
+      \small\dfrac{df}{dt}=\lim\limits_{h\to0}\dfrac{f(t+h)-f(t)}{h}
+
+  - id: "94"
+    name: Scriptsize
+    note:
+    equation: >
+      \scriptsize\dfrac{df}{dt}=\lim\limits_{h\to0}\dfrac{f(t+h)-f(t)}{h}
+
+  - id: "95"
+    name: Tiny
+    note:
+    equation: >
+      \tiny\dfrac{df}{dt}=\lim\limits_{h\to0}\dfrac{f(t+h)-f(t)}{h}
+
+  - id: "96"
+    name: Lots of symbols
+    note:
+    equation: >
+      \begin{align}\sum_{k=1}^xf(k)={}&C+\int_0^xf(t)\,dt+\frac{1}{2}f(x)\\&+\sum_{k=1}^\infty\frac{B_{2k}}{(2k)!}f^{(2k-1)}(x)\end{align}
+
+  - id: "97"
+    name: MathBB no. 1
+    note:
+    equation: >
+      \mathbb{N}_0=\{x\mid x\in\mathbb{Z},x\ge0\}
+
+  - id: "98"
+    name: MathBB no. 2
+    note:
+    equation: >
+      \mathbb{N}^*=\{x\mid x\in\mathbb{Z},x>0\}
+
+  - id: "99"
+    name: Yet another Piecwise
+    note:
+    equation: >
+      f(x)=\begin{cases}0&x<0\\\frac{100-x}{100}&0\leq x\leq100\\0&100< x\end{cases}
+
+  - id: "100"
+    name: Custom Text and Coloring
+    note:
+    equation: >
+      \textcolor{blue}{\transt{\text{rational number}}{رقم منطقي}=\frac{\transt{\text{integer}}{عدد صحيح}}{\transt{\text{integer}}{عدد صحيح}}}
+
+  - id: "102"
+    name: "Step by step solving with large numbers"
+    note:
+    equation: >
+      \begin{align}\textcolor{coral}{2}\times\textcolor{coral}{3}&=
+      \textcolor{blue}{\transn{1,000,000.532}x}\\\textcolor{coral}{1}
+      \times\textcolor{coral}{7}&=\textcolor{blue}{\transn{7,658}y}\\
+      \textcolor{coral}{3}\times\textcolor{coral}{4}\times
+      \textcolor{coral}{5}&=\textcolor{blue}{60}\end{align}
+
+  - id: "103"
+    name: "Mixed Fractions"
+    note:
+    equation: >
+      \tmfrac{20}{1}{2}
+
+  - id: "104"
+    name: "Mixed Fractions with Symbols"
+    note:
+    equation: >
+      \tmfrac{x}{y}{z}
