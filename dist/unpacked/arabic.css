@@ -27,12 +27,21 @@
 }
 
 .mfliph.mar > .mjx-char.MJXc-TeX-unknown-I {
-  border: solid transparent;
-  border-width: 0.45em 0;
+    border: solid transparent;
+    border-width: 0.45em 0;
+}
+
+.mfliph.mar > .mjx-char.MJXc-TeX-unknown-R {
+    border: solid transparent;
+    border-width: 0.45em 0;
 }
 
 .mjx-mn > .mfliph.mar > .mjx-char.MJXc-TeX-unknown-I {
   border-width: 0;
+}
+
+.mjx-mn > .mfliph.mar > .mjx-char {
+    direction: ltr;
 }
 
 .mjx-stack > .mjx-sup > span > .mfliph.mar > .MJXc-TeX-unknown-I {
@@ -40,17 +49,19 @@
 }
 
 .MJXc-stacked > .mjx-numerator > span > .mfliph.mar > .MJXc-TeX-unknown-R {
-    padding-top: 0.6em;
+    padding-top: 0.45em;
+    border: none;
 }
 
 .MJXc-stacked > .mjx-denominator > span > .mfliph.mar > .MJXc-TeX-unknown-R {
-    padding-bottom: 0.6em;
+    padding-bottom: 0.45em;
+    border: none;
 }
 
 .MJXc-stacked > .mjx-denominator > span > .mfliph > .mjx-char.MJXc-TeX-unknown-R {
-    padding-bottom: 0.6em;
+    padding-bottom: 0.45em;
+    border: none;
 }
-
 
 /* HTML-CSS Output Jax CSS */
 .MathJax .mfliph {
