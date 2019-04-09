@@ -1,6 +1,6 @@
 {
   "name": "arabic-mathjax",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "A docker container for developing my MathJax plugins.",
   "main": "gulpfile.js",
   "scripts": {
