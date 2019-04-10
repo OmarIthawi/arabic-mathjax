@@ -59,6 +59,12 @@
     border: none;
 }
 
+/* Fixing \transn to give it a reserved space using boarder */
+.MathJax_CHTML .mjx-mrow > .mjx-mtext .mjx-char.MJXc-TeX-unknown-R {
+    border: solid transparent;
+    border-width: 0.45em 0;
+}
+
 /* HTML-CSS Output Jax CSS */
 .MathJax .mfliph {
     display: inline-block !important;
