@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "browser-sync": "^2.26.3",
-    "gulp": "^4.0.2",
+    "gulp": "^5.0.0",
     "gulp-uglifycss": "^1.1.0",
     "gulp-concat": "^2.6.0",
     "gulp-order": "^1.2.0",
