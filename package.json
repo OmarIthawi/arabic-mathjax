@@ -4,6 +4,8 @@
   "description": "A docker container for developing my MathJax plugins.",
   "main": "gulpfile.js",
   "scripts": {
+    "dev": "gulp",
+    "build": "gulp build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -12,14 +14,14 @@
   },
   "devDependencies": {
     "browser-sync": "^3.0.4",
-    "gulp": "^4.0.2",
+    "gulp": "^5.0.1",
+    "mathjax": "^2.7.9",
     "gulp-uglifycss": "^1.1.0",
-    "gulp-concat": "^2.6.0",
+    "gulp-concat": "^2.6.1",
     "gulp-order": "^1.2.0",
-    "gulp-plumber": "1.0.0",
-    "gulp-replace": "^0.5.4",
-    "gulp-uglify": "^1.2.0",
-    "run-sequence": "^1.2.1"
+    "gulp-plumber": "^1.2.1",
+    "gulp-replace": "^1.1.4",
+    "gulp-uglify": "^3.0.2"
   },
   "author": "Omar Al-Ithawi <i@omardo.com>",
   "generator": "Quench <http://quenchjs.com/>",

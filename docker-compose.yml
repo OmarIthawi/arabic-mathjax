@@ -1,13 +1,14 @@
-main:
-  image: node:9.4.0
+services:
+  main:
+    image: node:lts
 
-  working_dir: /code/
-  environment:
-    PORT: "1990"
-  command: node node_modules/.bin/gulp
+    working_dir: /code/
+    environment:
+      PORT: "1990"
+    command: npm run dev
 
-  ports:
-    - "1990:1990"
+    ports:
+      - "1990:1990"
 
-  volumes:
-    - ".:/code/"
+    volumes:
+      - ".:/code/"
