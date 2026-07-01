@@ -1,5 +1,5 @@
 /*
- * Post-build asset step (replaces the old gulp pipeline):
+ * Post-build asset step:
  *   1. Copies the webpacked component bundle to dist/arabic.min.js.
  *   2. Copies and lightly minifies css/arabic.css to dist/arabic.css.
  * Dependency-free and cross-platform.
