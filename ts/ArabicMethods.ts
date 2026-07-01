@@ -12,8 +12,7 @@
 /**
  * @file The TeX parse methods for the Arabic macros: `\ar`, `\alwaysar`,
  *       `\fliph`, `\transn`, `\tmfrac`, `\transx`, `\transt`, `\transs`, and the
- *       dictionary macros (`\zero`, `\radius`, `\Area`, `\charge`). Ported from
- *       the v2 `MathJax.Extension.Arabic` helpers and `TEX.Parse` augmentations.
+ *       dictionary macros (`\zero`, `\radius`, `\Area`, `\charge`).
  */
 
 import { MmlNode } from '@mathjax/src/js/core/MmlTree/MmlNode.js';
@@ -41,8 +40,7 @@ function inArabic(parser: TexParser): boolean {
 
 /**
  * Parses an arbitrary TeX string into a single MmlNode, inheriting the current
- * environment (so the Arabic `lang` flag, packages, etc. all apply). This is the
- * v4 equivalent of v2's `MathJax.InputJax.TeX.Parse(tex).mml()`.
+ * environment (so the Arabic `lang` flag, packages, etc. all apply).
  *
  * @param {TexParser} parser The current parser.
  * @param {string} tex The TeX source to parse.
@@ -55,9 +53,9 @@ function parseString(parser: TexParser, tex: string): MmlNode {
 /**
  * Parses the macro's brace argument and returns it as a single node. A
  * single-element argument is returned unwrapped (so a container flip toggles
- * that same element — the v2 `_getArgumentMML` behavior that leaves a lone glyph
- * upright); a multi-element argument is wrapped in a concrete mrow so the flip
- * class attaches to a rendered element (as in the v4 `html` package).
+ * that same element, leaving a lone glyph upright); a multi-element argument is
+ * wrapped in a concrete mrow so the flip class attaches to a rendered element
+ * (as in the built-in `html` package's `\class`).
  *
  * @param {TexParser} parser The current parser.
  * @param {string} name The macro name.
@@ -98,7 +96,7 @@ function parseAsArabic(parser: TexParser, name: string): MmlNode {
 
 /**
  * Builds a parse method that pushes the English or the Arabic TeX form depending
- * on the current environment language. The v4 equivalent of v2's `Arabic.TeX`.
+ * on the current environment language.
  *
  * @param {string} english The English TeX source.
  * @param {string} arabic The Arabic TeX source.

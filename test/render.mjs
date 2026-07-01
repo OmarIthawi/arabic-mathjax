@@ -71,7 +71,7 @@ function check(title, tex, expect = [], forbid = []) {
 // === Glyph substitution ================================================
 
 // Single identifier: mapped to Arabic, font class set, but a lone glyph is left
-// upright (token flip cancelled by the container flip) — matches v2.
+// upright (token flip cancelled by the container flip).
 check('\\ar{x}: x → س, font class, not mirrored', '\\ar{x}',
   ['<mi class="mar" data-latex="\\ar{x}">س</mi>'], ['mfliph']);
 

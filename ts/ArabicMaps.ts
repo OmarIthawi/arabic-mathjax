@@ -17,8 +17,7 @@
 
 /**
  * @file The Arabic configuration data: the Latin -> Arabic substitution maps,
- *       the macro dictionary and the page-language helper. Ported verbatim from
- *       the MathJax v2 `MathJax.Extension.Arabic.config` object.
+ *       the macro dictionary and the page-language helper.
  */
 
 /**

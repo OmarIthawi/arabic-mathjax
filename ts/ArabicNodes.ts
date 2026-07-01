@@ -11,8 +11,7 @@
 
 /**
  * @file The heart of the Arabic extension. `createArabicToken` is a
- *       `NODES.token` factory override (the v4 replacement for v2's
- *       `TEX.Parse.prototype.mmlToken`): when the parser environment language is
+ *       `NODES.token` factory override: when the parser environment language is
  *       Arabic it substitutes Arabic glyphs into `mi`/`mn`/`mo` tokens and marks
  *       each one to be mirrored. `flipNode` toggles the mirror on any node (used
  *       for the `\ar`/`\alwaysar`/`\fliph` container flips).
@@ -36,10 +35,10 @@ export const FLIP_CLASS = 'mfliph';
 export const FONT_CLASS = 'mar';
 
 /**
- * Toggles the horizontal-flip class on a node. Toggling preserves the v2 "flip
- * twice means no flip" semantics: an Arabized token flips once at creation, and
- * when it is the sole argument of `\ar`/`\alwaysar`/`\fliph` the container flips
- * it back — leaving a lone glyph upright, exactly as in v2.
+ * Toggles the horizontal-flip class on a node. Toggling gives "flip twice means
+ * no flip" semantics: an Arabized token flips once at creation, and when it is
+ * the sole argument of `\ar`/`\alwaysar`/`\fliph` the container flips it back —
+ * leaving a lone glyph upright.
  *
  * @param {MmlNode} node The node to (un)mirror.
  */
@@ -59,8 +58,7 @@ export function flipNode(node: MmlNode): void {
  *
  * `mi`/`mn` are always mirrored (so each glyph reads correctly inside a mirrored
  * RTL expression); `mo` is mirrored only when an operator was actually
- * substituted — matching the v2 arabicNumber/arabicIdentifier/arabicOperator
- * behavior.
+ * substituted.
  *
  * @param {NodeFactory} factory The current node factory.
  * @param {string} kind The token kind (`mi`, `mn`, `mo`, `mtext`, ...).
