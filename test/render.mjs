@@ -80,8 +80,14 @@ check('\\ar{x}: x → س, font class, not mirrored', '\\ar{x}',
 check('\\ar{123}: 123 → ١٢٣, upright', '\\ar{123}',
   ['١٢٣', 'class="mar"'], ['mfliph']);
 
-// Function name (multi-letter identifier) maps.
-check('\\alwaysar{\\sin}: sin → جا', '\\alwaysar{\\sin x}', ['جا']);
+// Function name (multi-letter identifier) maps and reads right-to-left.
+check('\\alwaysar{\\cos y}: cos → جتا, rtl', '\\alwaysar{\\cos y}',
+  ['class="mfliph mar mrtl"', 'جتا']);
+
+// The limit operator is multi-letter Arabic and must read right-to-left.
+check('\\ar{\\lim x = 5}: lim → نهــا (rtl), digits stay ltr',
+  '\\ar{\\lim x = 5}',
+  ['class="mfliph mar mrtl"', 'نهــا', 'class="mfliph mar" data-latex="5">٥</mn>']);
 
 // === Operators =========================================================
 
@@ -120,6 +126,16 @@ check('\\ar{x+\\transn{1,000.5}}: digits + ٫ separator, flipped text',
 
 check('\\ar{y+\\transt{\\text{or}}{أو}}: Arabic text branch',
   '\\ar{y+\\transt{\\text{or}}{أو}}', ['أو']);
+
+// Arabic word text gets the Arabic font + right-to-left flow (correct word order).
+check('\\ar{x=\\transt{\\text{rn}}{رقم منطقي}}: word text is rtl + font',
+  '\\ar{x=\\transt{\\text{rn}}{رقم منطقي}}',
+  ['class="mfliph mar mrtl">رقم منطقي</mtext>']);
+
+// Number text (from \transn) keeps the Arabic font but stays left-to-right.
+check('\\ar{x+\\transn{1,000.5}}: number text is ltr (no mrtl)',
+  '\\ar{x+\\transn{1,000.5}}',
+  ['class="mfliph mar">١٠٠٠٫٥</mtext>'], ['mrtl']);
 
 check('\\ar{x+\\zero}: dict macro \\zero → صفر', '\\ar{x+\\zero}', ['صفر']);
 

@@ -113,13 +113,13 @@ export function createArabicToken(
 }
 
 /**
- * Walks a subtree and marks explicit Arabic `mtext` (produced by `\text{}`, e.g.
- * via `\transt`/`\transn`/dictionary macros). `\text{}` builds its `mtext`
- * outside the token factory, so this runs as a post-processor instead.
- *
- * Arabic content gets the Arabic font; running word text additionally gets
- * right-to-left flow so multi-word phrases read in the correct order, while
- * number text (digits only, from `\transn`) is left in its natural order.
+ * Walks a subtree and marks Arabic token nodes for direction (and, for `\text{}`,
+ * for font). Running Arabic that spans more than one glyph — multi-letter
+ * function names (`\cos` → `جتا`), the limit operator (`\lim` → `نهــا`), and
+ * word text (from `\transt` etc.) — must flow right-to-left so its glyphs read in
+ * the correct order. Number text (digits only, from `\transn`) and single-letter
+ * identifiers are left in their natural order. `\text{}` builds its `mtext`
+ * outside the token factory, so its font is applied here too.
  *
  * @param {MmlNode} node The subtree root to walk.
  */
@@ -127,9 +127,9 @@ function markArabicText(node: MmlNode): void {
   if (!node) {
     return;
   }
-  if (node.isKind('mtext')) {
+  if (node.isKind('mtext') || node.isKind('mi') || node.isKind('mo')) {
     const text = (node as unknown as { getText(): string }).getText();
-    if (ARABIC_CHAR.test(text)) {
+    if (node.isKind('mtext') && ARABIC_CHAR.test(text)) {
       addClass(node, FONT_CLASS);
     }
     if (ARABIC_LETTER.test(text)) {
