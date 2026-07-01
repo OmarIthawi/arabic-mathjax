@@ -4,3 +4,7 @@
 /.idea
 .DS_Store
 /static/
+
+# Build outputs (see scripts/clean.mjs)
+/js/
+/components/arabic/arabic.min.js

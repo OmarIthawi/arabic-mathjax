@@ -1,0 +1,11 @@
+{
+  "webpack": {
+    "name": "arabic",
+    "libs": [
+      "components/js/core/lib",
+      "components/js/startup/lib",
+      "components/js/input/tex-base/lib"
+    ],
+    "dist": "."
+  }
+}

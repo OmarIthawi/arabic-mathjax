@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "rootDir": "ts",
+    "outDir": "js",
+    "declaration": false,
+    "sourceMap": false,
+    "strict": true,
+    "strictFunctionTypes": false,
+    "noImplicitAny": false,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["es2020", "dom"]
+  },
+  "include": ["ts/**/*.ts"]
+}
