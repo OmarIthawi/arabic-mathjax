@@ -26,6 +26,7 @@
 
 import { MmlNode } from '@mathjax/src/js/core/MmlTree/MmlNode.js';
 import { NodeFactory } from '@mathjax/src/js/input/tex/NodeFactory.js';
+import ParseOptions from '@mathjax/src/js/input/tex/ParseOptions.js';
 import { addClass, removeClass, hasClass } from './ArabicUtil.js';
 import { mapNumbers, mapIdentifiers, mapOperators } from './ArabicUtil.js';
 
@@ -33,6 +34,17 @@ import { mapNumbers, mapIdentifiers, mapOperators } from './ArabicUtil.js';
 export const FLIP_CLASS = 'mfliph';
 /** CSS class that selects the Arabic font and upright style. */
 export const FONT_CLASS = 'mar';
+/** CSS class that lays out text right-to-left (`direction: rtl`). */
+export const RTL_CLASS = 'mrtl';
+
+/** Any character in the Arabic Unicode block (letters, digits, punctuation). */
+const ARABIC_CHAR = /[؀-ۿ]/;
+/**
+ * Arabic letters only — excludes the Arabic-Indic digits (U+0660–U+0669) and
+ * number punctuation like the decimal separator (U+066B), so that number text
+ * (from `\transn`) is not treated as right-to-left running text.
+ */
+const ARABIC_LETTER = /[ء-ٟٮ-ۿ]/;
 
 /**
  * Toggles the horizontal-flip class on a node. Toggling gives "flip twice means
@@ -51,10 +63,10 @@ export function flipNode(node: MmlNode): void {
 }
 
 /**
- * `NODES.token` override. Creates a token node, and — when the parser
- * environment language is Arabic — substitutes Arabic glyphs into `mi`/`mn`/`mo`
- * tokens and mirrors them. Other token kinds (notably `mtext`, whose content is
- * already explicit Arabic from `\text{}`) are left untouched.
+ * `NODES.token` override. When the parser environment language is Arabic it
+ * substitutes Arabic glyphs into `mi`/`mn`/`mo` tokens and mirrors them, and it
+ * gives explicit Arabic `\text{}` the Arabic font (plus right-to-left flow for
+ * word text). Everything else is created unchanged.
  *
  * `mi`/`mn` are always mirrored (so each glyph reads correctly inside a mirrored
  * RTL expression); `mo` is mirrored only when an operator was actually
@@ -98,4 +110,45 @@ export function createArabicToken(
   }
 
   return token;
+}
+
+/**
+ * Walks a subtree and marks explicit Arabic `mtext` (produced by `\text{}`, e.g.
+ * via `\transt`/`\transn`/dictionary macros). `\text{}` builds its `mtext`
+ * outside the token factory, so this runs as a post-processor instead.
+ *
+ * Arabic content gets the Arabic font; running word text additionally gets
+ * right-to-left flow so multi-word phrases read in the correct order, while
+ * number text (digits only, from `\transn`) is left in its natural order.
+ *
+ * @param {MmlNode} node The subtree root to walk.
+ */
+function markArabicText(node: MmlNode): void {
+  if (!node) {
+    return;
+  }
+  if (node.isKind('mtext')) {
+    const text = (node as unknown as { getText(): string }).getText();
+    if (ARABIC_CHAR.test(text)) {
+      addClass(node, FONT_CLASS);
+    }
+    if (ARABIC_LETTER.test(text)) {
+      addClass(node, RTL_CLASS);
+    }
+    return;
+  }
+  for (const child of node.childNodes || []) {
+    markArabicText(child as MmlNode);
+  }
+}
+
+/**
+ * `POSTPROCESSORS` pass: marks Arabic text nodes for font and direction once the
+ * whole tree is built.
+ *
+ * @param {{ data: ParseOptions }} arg The post-processing argument.
+ * @param {ParseOptions} arg.data The parse options carrying the tree root.
+ */
+export function markArabicTextNodes(arg: { data: ParseOptions }): void {
+  markArabicText(arg.data.root);
 }

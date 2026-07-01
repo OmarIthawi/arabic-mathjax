@@ -21,7 +21,7 @@ import {
 } from '@mathjax/src/js/input/tex/HandlerTypes.js';
 import { Configuration } from '@mathjax/src/js/input/tex/Configuration.js';
 import { CommandMap } from '@mathjax/src/js/input/tex/TokenMap.js';
-import { createArabicToken } from './ArabicNodes.js';
+import { createArabicToken, markArabicTextNodes } from './ArabicNodes.js';
 import { ArabicMethods, ArabicDictMethods } from './ArabicMethods.js';
 import { patchArrayLang } from './ArabicArray.js';
 
@@ -43,5 +43,6 @@ export const ArabicConfiguration = Configuration.create('arabic', {
     [HandlerType.MACRO]: ['arabicMacros', 'arabicDict'],
   },
   [ConfigurationType.NODES]: { token: createArabicToken },
+  [ConfigurationType.POSTPROCESSORS]: [markArabicTextNodes],
   [ConfigurationType.INIT]: patchArrayLang,
 });

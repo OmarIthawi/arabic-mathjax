@@ -18,6 +18,12 @@ mjx-container .mfliph {
   transform: scaleX(-1);
 }
 
+/* Running Arabic words (from \text/\transt/\transs) read right-to-left. Scoped
+   to this class so it never reorders Arabic-Indic numbers or single glyphs. */
+mjx-container .mrtl {
+  direction: rtl;
+}
+
 /*
  * Arabic glyphs fall outside the math fonts, so MathJax renders them as unknown
  * characters (<mjx-utext>) with an inline italic serif style. Override that on
