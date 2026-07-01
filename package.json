@@ -9,8 +9,7 @@
     "build:component": "node node_modules/@mathjax/src/components/bin/makeAll components/arabic",
     "build:assets": "node scripts/build-assets.mjs",
     "build": "npm run build:ts && npm run build:component && npm run build:assets",
-    "watch:ts": "tsc --watch",
-    "dev": "npm run build && browser-sync start --server --startPath testcases/ --port 3000 --no-notify --no-ui --files \"dist/**/*\" \"testcases/**/*\"",
+    "dev": "npm run build && node scripts/dev.mjs",
     "clean": "node scripts/clean.mjs",
     "test": "npm run build && node test/render.mjs"
   },
