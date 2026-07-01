@@ -7,6 +7,13 @@ punctuation, and right-to-left layout of expressions.
 It ships as a TeX package (`arabic`) plus a small stylesheet, and is written in
 TypeScript.
 
+## Key Features
+
+- Mirror an equation and lay it out right-to-left (RTL).
+- Translate commonly used identifiers and functions to Arabic.
+- Render Arabic-Indic numerals (١، ٢، ٣) in place of Western digits.
+- Bilingual macros that switch output by page language.
+
 ## Usage on a page
 
 Load MathJax v4, add the Arabic extension as a component, and include its stylesheet:
@@ -52,6 +59,51 @@ Then wrap math in `\ar{…}` to Arabize it when the page is Arabic
 | `\transs{en}{ar}` | Like `\transx`, wrapping Arabic runs in `\text{}`. |
 | `\zero \radius \Area \charge` | Localized dictionary symbols. |
 
+## Supported Features
+
+**Mirroring.** Almost everything is flipped for RTL layout, including parentheses
+`()`, braces `{}`, brackets `[]`, and stretchy constructs such as integration `∫`,
+roots `√`, and sums `Σ`. Symbols that should not be mirrored are left upright — for
+example lone Greek letters like `Θ`, `π`, `ε`.
+
+**Numerals.** Western digits render as Arabic-Indic numerals: `0123456789` →
+`٠١٢٣٤٥٦٧٨٩`.
+
+**Function names.**
+
+| TeX | Arabic |     | TeX | Arabic |
+| --- | --- | --- | --- | --- |
+| `\sin` | جا  |     | `\sec` | قا  |
+| `\cos` | جتا |     | `\csc` | قتا |
+| `\tan` | ظا  |     | `\log` | لو  |
+| `\cot` | ظتا |     | `\lim` | نهــا |
+
+**Identifiers.** Variable and function letters are transliterated:
+
+| | | | | | | | | |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| a → أ | b → ب | c → جـ | d → د | e → هـ | f → ق | g → جـ | h → هـ | k → ك |
+| l → ل | m → م | n → ن | r → ر | t → ت | x → س | y → ص | z → ع | |
+
+**Punctuation.** `,` → `،` and `;` → `؛`.
+
+**Dictionary symbols.**
+
+- `\radius` — `r` in English, `نق` in Arabic.
+- `\Area` — `A` in English, `م` in Arabic.
+- `\zero` — `0` in English, `صفر` in Arabic (as preferred by many Arabic textbooks).
+- `\charge` — `C` in English, [`ڛ` (U+069B)](https://www.compart.com/en/unicode/U+069B)
+  in Arabic; a Ruqʿah (رقعة) glyph with the
+  [modified Amiri font](https://github.com/OmarIthawi/amiri/releases).
+
+**Bilingual macros.** `\transx` (TeX), `\transt` (text, e.g.
+`\transt{\text{if}}{إذا}`), `\transs` (TeX with Arabic symbols), `\transn` (numbers,
+e.g. `\transn{2000,000.195}`), and `\tmfrac` (mixed fractions, e.g. `\tmfrac{10}{1}{2}`)
+each emit the first argument on English pages and the second on Arabic pages.
+
+**Language detection.** Whether a page is Arabic is taken from the `lang` attribute of
+the `<html>` element (used by `\ar`).
+
 ## Development
 
 Requires Node.js. No Docker.
@@ -78,6 +130,27 @@ npm run clean    # remove build outputs
 - `testcases/` — a live test page driven by `testcases.yml`.
 - `test/render.mjs` — headless tex→MathML checks.
 
+## Contributing
+
+Pull requests are welcome — open one against this repository and ping
+[@OmarIthawi](https://github.com/OmarIthawi). See [Development](#development) for the
+build, dev-server, and test workflow.
+
 ## License
 
 [MIT](LICENSE).
+
+## Author
+
+- Omar Al-Ithawi &lt;i@omardo.com&gt;
+
+## Background
+
+This extension exists to display mathematics for the Arabic learners at
+[Edraak.org](https://www.edraak.org). It grew from that need into a general-purpose
+Arabic notation package for MathJax.
+
+## Fork Info
+
+The original repository is [Edraak/arabic-mathjax](https://github.com/Edraak/arabic-mathjax);
+this fork aims to stay updated and supported.
