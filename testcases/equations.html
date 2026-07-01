@@ -42,9 +42,7 @@
                 </td>
                 <td id="eq_{{id}}_en">
                     <a class="inline-link" href="#eq_{{id}}_en">#</a>
-                    <script type="math/tex; mode=display">
-                        {{{equation}}}
-                    </script>
+                    \[ {{{equation}}} \]
                 </td>
                 <td id="eq_{{id}}_ar">
                     <a class="inline-link" href="#eq_{{id}}_ar">#</a>
@@ -54,11 +52,7 @@
                     {{/hide_arabic}}
 
                     {{^hide_arabic}}
-                    <script type="math/tex; mode=display">
-                        \ar{
-                            {{{equation}}}
-                        }
-                    </script>
+                    \[ \ar{ {{{equation}}} } \]
                     {{/hide_arabic}}
                 </td>
             </tr>

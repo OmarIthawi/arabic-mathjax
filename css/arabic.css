@@ -19,5 +19,9 @@ mjx-container .mfliph {
 }
 
 mjx-container .mar {
+  /* Arabic glyphs fall outside the math fonts; render them with an Arabic face.
+     v2 configured this via the output jax's `undefinedFamily`, which v4 drops.
+     Override this font stack on your page if you ship a different Arabic font. */
+  font-family: 'Amiri', 'Droid Arabic Naskh', serif;
   font-style: normal;
 }

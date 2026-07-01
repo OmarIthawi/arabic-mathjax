@@ -2,202 +2,51 @@
 <html lang="ar">
 
 <head>
-    <title>Test Cases for the Arabic.js MathJax Package</title>
+  <meta charset="utf-8">
+  <title>Test Cases for the Arabic MathJax Extension (v4)</title>
 
-    <script type="text/javascript">
-      var isLocalDevelopment = (location.host.indexOf('local') !== -1);
-      var isCommonHTML = (location.search.indexOf('common-html') !== -1);
-    </script>
+  <link href="//fonts.googleapis.com/css?family=Amiri&amp;subset=arabic" rel="stylesheet" type="text/css">
+  <link href="testcases.css" rel="stylesheet" type="text/css">
 
-    <link href="//fonts.googleapis.com/css?family=Amiri&amp;subset=arabic" rel="stylesheet" type="text/css">
-    <link href="//fonts.googleapis.com/earlyaccess/droidarabicnaskh.css" rel="stylesheet" type="text/css">
+  <!-- The Arabic extension's stylesheet (the .mfliph mirror + .mar Arabic font). -->
+  <link href="../dist/arabic.css" rel="stylesheet" type="text/css">
 
-    <link href="testcases.css" rel="stylesheet" type="text/css">
-
-    <script type="text/javascript" src="//media.readthedocs.org/javascript/jquery/jquery-2.0.3.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/2.1.3/mustache.js"></script>
-    <script type="text/javascript" src="//unpkg.com/js-yaml@3.6.0/dist/js-yaml.js"></script>
-
-    <script type="text/javascript" src="render-equations.js"></script>
-
-    <script type="text/javascript">
-      (function () {
-        var mathjaxConfigs = isCommonHTML ? 'TeX-MML-AM_CHTML' : 'TeX-MML-AM_HTMLorMML-full';
-
-        var mathjaxScript;
-        if (isLocalDevelopment) {
-          mathjaxScript = '/mathjax/unpacked/MathJax.js?config=' + mathjaxConfigs;
-        } else {
-          mathjaxScript = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=' + mathjaxConfigs;
-        }
-
-        var script = document.createElement("script");
-        script.type = "text/javascript";
-        script.src  = mathjaxScript;
-        document.getElementsByTagName("head")[0].appendChild(script);
-      }());
-    </script>
-
-
-    <script type="text/javascript">
-      (function () {
-        /**
-         * Simple log counter function.
-         */
-        if ('undefined' === typeof console) {
-          return;
-        }
-
-        var counters = {};
-
-        console.logc = function (identifier) {
-          var identifier = ('' + identifier);
-          if (!counters[identifier]) {
-            counters[identifier] = 0;
-          }
-
-          counters[identifier] += 1;
-          var logArgs = [];
-          logArgs.push(identifier);
-          logArgs.push(counters[identifier]);
-          logArgs = logArgs.concat(Array.prototype.slice.call(arguments, 1));
-
-          console.log.apply(console, logArgs);
-        };
-      }());
-    </script>
-
-    <script type="text/x-mathjax-config">
-      if (isLocalDevelopment) {
-          MathJax.Ajax.config.path["arabic"] = "/dist/";
-          arabicExtensionPath = "[arabic]/unpacked/arabic.js";
-      } else {
-          MathJax.Ajax.config.path["arabic"] = "../dist/";
-          arabicExtensionPath = "[arabic]/arabic.js";
+  <!--
+    MathJax v4 configuration. The Arabic extension is loaded as a component from
+    ../dist and added to the TeX packages. The equations use a handful of stock
+    packages (color, enclose, ...) that MathJax autoloads on demand.
+  -->
+  <script>
+    window.MathJax = {
+      loader: {
+        load: ['[tex]/ams', '[tex]/color', '[tex]/enclose', '[tex]/cases', '[arabic]/arabic.min.js'],
+        paths: { arabic: '../dist' }
+      },
+      tex: {
+        packages: { '[+]': ['ams', 'color', 'enclose', 'cases', 'arabic'] },
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]'], ['$$', '$$']]
       }
-
-      var $stylesheet = $("<link rel='stylesheet' type='text/css' />")
-                          .attr('href', MathJax.Ajax.config.path["arabic"] + "/arabic.css");
-      $stylesheet.appendTo('head');
-
-      MathJax.Hub.Config({
-        showMathMenu: false,
-        TeX: {
-          extensions: [
-            "enclose.js",
-            "color.js",            
-            "AMSmath.js",
-            "AMSsymbols.js"
-          ],
-        },
-        extensions: [
-          "[arabic]/arabic.js",
-        ]
-      });
-
-      MathJax.Hub.Config({
-        'HTML-CSS': {
-          linebreaks: { automatic: true },
-          undefinedFamily: 'Amiri'
-        },
-        CommonHTML: { 
-          linebreaks: { automatic: true },
-          undefinedFamily: 'Amiri'          
-        },
-      });
-
-      MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
-        console.error(message);
-      });
-
-      MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
-        console.error(message);
-      });
-    </script>
-
-
-  <script type="text/x-mathjax-config">
-    //
-    //  Find out about ALL startup and hub messages
-    //
-    MathJax.Hub.Startup.signal.Interest(function (message) {
-      console.log("Startup: " + message)
-    });
-    MathJax.Hub.signal.Interest(function (message) {
-      console.log("Hub: " + message)
-    });
-    //
-    //  Since signals are remembered, registering an interest will cause
-    //  use to receive all the past signals as well as new ones.
-    //  This marks the point were the above routines were called.
-    //
-    console.log("##### events above this have already occurred #####");
-
-    //
-    //  Display messages when these files are loaded
-    //  (Note the difference between extensions and TeX.extensions,
-    //   and the difference between when noUndefind is loaded compared
-    //   to when it signals that it is ready)
-    //
-
-    MathJax.Hub.Register.LoadHook("[MathJax]/extensions/TeX/noUndefined.js", function () {
-      MathJax.Hub.Startup.signal.Post("*** noUndefined Loaded ***");
-    });
-
-    MathJax.Hub.Register.LoadHook("[MathJax]/extensions/TeX/AMSmath.js", function () {
-      MathJax.Hub.Startup.signal.Post("*** AMSmath Loaded ***");
-    });
-
-    //
-    //  Display a message that we are in the configuration code
-    //   (The Message function is not yet defined when this code
-    //    runs, so we can't use that here.  Post a signal
-    //    of our own, so it will be displayed along with all
-    //    the other signals).
-    //
-    MathJax.Hub.Startup.signal.Post("*** In Startup Configuration code ***");
-
-    //
-    //  When the "onLoad" message is posted, display a message.
-    //    (Since this hook is registered before the ones in the main body
-    //     below, it runs before the code to print the "Startup: onLoad"
-    //     message, so this message shows up first in the output.)
-    //
-    MathJax.Hub.Register.StartupHook("onLoad", function () {
-      console.log("*** The onLoad handler has run, page is ready to process ***");
-    });
-
-    //
-    //  This will be performed after MathJax has completed its
-    //  setup and typesetting run, which have already been
-    //  pushed onto the queue.
-    //    (Since the Message function isn't defined yet when this code
-    //     runs, we need to enclose it in a function so it will be
-    //     looked up later when it is defined.)
-    //
-    MathJax.Hub.Queue(function () {
-      console.log("*** MathJax is done ***");
-    });
+    };
   </script>
+  <!-- MathJax v4 (served locally from node_modules; swap for a CDN if preferred). -->
+  <script id="MathJax-script" async src="../node_modules/mathjax/tex-chtml.js"></script>
 
-  <script type="text/x-mathjax-config">
-    renderEquations();
-    if (!isCommonHTML) {
-      document.getElementById('system-common-html').className = '';
-    } else {
-      document.getElementById('system-html-css').className = '';
-    }
-    console.log('Render Equations');
-  </script>
+  <!-- Libraries used to build the equations table from testcases.yml. -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/4.2.0/mustache.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+  <script src="render-equations.js"></script>
 </head>
 
 <body>
-  <h2>
-    <a id="system-html-css" class="hidden" href="?output=html-css">Use HTML-CSS</a>
-    <a id="system-common-html" class="hidden" href="?output=common-html">Use CommonHTML</a>
-  </h2>
-<div id="wrapper">
+  <div id="wrapper">
     <div id="equations"></div>
-</div>
+  </div>
+  <script>
+    window.addEventListener('DOMContentLoaded', function () {
+      renderEquations();
+    });
+  </script>
 </body>
+
 </html>
