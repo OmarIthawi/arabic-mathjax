@@ -19,13 +19,14 @@ import { RegisterHTMLHandler } from '@mathjax/src/js/handlers/html.js';
 import { SerializedMmlVisitor } from '@mathjax/src/js/core/MmlTree/SerializedMmlVisitor.js';
 import { STATE } from '@mathjax/src/js/core/MathItem.js';
 
-// Registers Configuration.create('arabic', ...) into the shared handler.
+// Registers the ams package (for \begin{align}) and the arabic package.
+import '@mathjax/src/js/input/tex/ams/AmsConfiguration.js';
 import '../js/arabic.js';
 
 const adaptor = liteAdaptor();
 RegisterHTMLHandler(adaptor);
 
-const tex = new TeX({ packages: ['base', 'arabic'] });
+const tex = new TeX({ packages: ['base', 'ams', 'arabic'] });
 const html = mathjax.document('', { InputJax: tex });
 const visitor = new SerializedMmlVisitor();
 
@@ -128,6 +129,15 @@ check('\\ar{x+\\radius}: dict macro \\radius → نق', '\\ar{x+\\radius}', ['ن
 
 check('\\ar{\\tmfrac{2}{1}{2}}: mixed fraction has an mfrac',
   '\\ar{\\tmfrac{2}{1}{2}}', ['mfrac', '١', '٢']);
+
+// === Alignment environments propagate the Arabic language =============
+
+// Inside \begin{align}, the env language must reach the cells so their tokens
+// are Arabized (digits -> Arabic-Indic, identifiers -> Arabic glyphs).
+check('\\ar{\\begin{align} x &= 12 \\\\ y &= 3 \\end{align}}: cells Arabized',
+  '\\ar{\\begin{align} x &= 12 \\\\ y &= 3 \\end{align}}',
+  ['س', 'ص', '١', '٢', '٣', 'class="mfliph mar"'],
+  ['<mn data-latex="12">12</mn>']);
 
 // === Sanity: extension is inert without \ar / \alwaysar ================
 
