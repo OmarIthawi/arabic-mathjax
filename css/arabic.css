@@ -1,0 +1,23 @@
+/*
+ * Arabic MathJax extension styles (v4).
+ *
+ * The extension marks nodes during TeX parsing by adding CSS classes (see
+ * ArabicNodes.ts). These rules give those classes their visual meaning, so the
+ * flip is done purely in CSS and works across MathJax output without overriding
+ * the output jax.
+ *
+ *   .mfliph  Mirrors a node horizontally. Applied to whole sub-expressions
+ *            (to lay them out right-to-left) and to each Arabized glyph (to
+ *            mirror it back so it reads correctly). Nested mirrors compose.
+ *   .mar     Marks a node that carries a substituted Arabic glyph, selecting an
+ *            upright style and an Arabic-capable font.
+ */
+
+mjx-container .mfliph {
+  display: inline-block;
+  transform: scaleX(-1);
+}
+
+mjx-container .mar {
+  font-style: normal;
+}

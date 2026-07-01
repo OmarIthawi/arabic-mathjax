@@ -1,30 +1,33 @@
 {
   "name": "arabic-mathjax",
-  "version": "2.1.1",
-  "description": "A docker container for developing my MathJax plugins.",
-  "main": "gulpfile.js",
+  "version": "4.0.0",
+  "description": "A MathJax v4 extension that provides Arabic mathematical notation support.",
+  "type": "module",
+  "main": "js/arabic.js",
   "scripts": {
-    "dev": "gulp",
-    "build": "gulp build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:ts": "tsc",
+    "build:component": "node node_modules/@mathjax/src/components/bin/makeAll components/arabic",
+    "build:assets": "node scripts/build-assets.mjs",
+    "build": "npm run build:ts && npm run build:component && npm run build:assets",
+    "watch:ts": "tsc --watch",
+    "dev": "npm run build && browser-sync start --server --startPath testcases/ --port 3000 --no-notify --no-ui --files \"dist/**/*\" \"testcases/**/*\"",
+    "clean": "node scripts/clean.mjs",
+    "test": "npm run build && node test/render.mjs"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/OmarIthawi/arabic-mathjax.git"
   },
   "devDependencies": {
+    "@mathjax/src": "^4.1.2",
     "browser-sync": "^3.0.4",
-    "gulp": "^5.0.1",
-    "mathjax": "^2.7.9",
-    "gulp-uglifycss": "^1.1.0",
-    "gulp-concat": "^2.6.1",
-    "gulp-order": "^1.2.0",
-    "gulp-plumber": "^1.2.1",
-    "gulp-replace": "^1.1.4",
-    "gulp-uglify": "^3.0.2"
+    "mathjax": "^4.1.2",
+    "terser-webpack-plugin": "^5.6.1",
+    "typescript": "^6.0.3",
+    "webpack": "^5.108.3",
+    "webpack-cli": "^7.1.0"
   },
   "author": "Omar Al-Ithawi <i@omardo.com>",
-  "generator": "Quench <http://quenchjs.com/>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/OmarIthawi/arabic-mathjax/issues"
