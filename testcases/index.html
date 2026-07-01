@@ -19,11 +19,11 @@
   <script>
     window.MathJax = {
       loader: {
-        load: ['[tex]/ams', '[tex]/color', '[tex]/enclose', '[tex]/cases', '[arabic]/arabic.min.js'],
+        load: ['[tex]/color', '[tex]/enclose', '[tex]/cases', '[arabic]/arabic.min.js'],
         paths: { arabic: '../dist' }
       },
       tex: {
-        packages: { '[+]': ['ams', 'color', 'enclose', 'cases', 'arabic'] },
+        packages: { '[+]': ['color', 'enclose', 'cases', 'arabic'] },
         inlineMath: [['\\(', '\\)']],
         displayMath: [['\\[', '\\]'], ['$$', '$$']]
       }
@@ -32,9 +32,10 @@
   <!-- MathJax v4 (served locally from node_modules; swap for a CDN if preferred). -->
   <script id="MathJax-script" async src="../node_modules/mathjax/tex-chtml.js"></script>
 
-  <!-- Libraries used to build the equations table from testcases.yml. -->
-  <script src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/4.2.0/mustache.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+  <!-- Libraries used to build the equations table from testcases.yml
+       (served locally so the page works offline). -->
+  <script src="../node_modules/mustache/mustache.min.js"></script>
+  <script src="../node_modules/js-yaml/dist/browser/js-yaml.umd.min.js"></script>
   <script src="render-equations.js"></script>
 </head>
 
